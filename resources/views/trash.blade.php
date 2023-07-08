@@ -7,11 +7,10 @@
                 <div class="row">
                     <div class="col-md-6">
 
-                        <h4>Posts</h4>
+                        <h4>Posts apagados</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end gap-4">
-                        <a href="{{route('posts.create')}}" class="btn btn-primary float-right">Novo Post</a>
-                        <a href="#" class="btn btn-secondary float-right mr-2">Lixeira</a>
+                        <a href="{{route('posts.index')}}" class="btn btn-primary float-right">Back</a>
                     </div>
                 </div>
             </div>
