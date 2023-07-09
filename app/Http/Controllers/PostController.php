@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -46,6 +47,23 @@ class PostController extends Controller
             'category_id.integer' => 'Categoria inválida',
             'description.required' => 'Descrição é obrigatória'
         ]);
+    
+        
+        
+        $fileName = time().'_'.$request->image->getClientOriginalName();
+        
+        $filePath = $request->file('image')->storeAs('uploads', $fileName, 'public');
+        
+        
+        $post = new Post();
+    
+        $post->title = $request->title;
+        $post->category_id = $request->category_id;
+        $post->description = $request->description;
+        $post->image = '/storage/' . $filePath;
+        $post->save();
+
+        return redirect()->route('posts.index');
     }
 
     /**
