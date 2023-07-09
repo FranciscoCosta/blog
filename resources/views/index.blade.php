@@ -31,23 +31,29 @@
 
                     </thead>
                     <tbody>
-                        @foreach ($posts as $post)
+                        @if ($posts->isEmpty())
                             <tr>
-                                <th scope="row">{{ $post->id }}</th>
-                                <td>
-                                    <img src="{{asset($post->image) }}" alt="imagem" class="img-fluid"
-                                        width="100">
-                                </td>
-                                <td>{{ $post->title }}</td> 
-                                <td>{{ $post->description }}</td>
-                                <td>{{ $post->category_id }}</td>
-                                <td>{{date('d-m-Y', strtotime($post->created_at))}}</td>
-                                <td>
-                                    <a href="#" class="btn-sm btn-success btn">Mostrar</a>
-                                    <a href="#" class="btn-sm btn-primary btn">Editar</a>
-                                    <a href="#" class="btn-sm btn-danger btn">Excluir</a>
+                                <td colspan="7" class="text-center">Nenhum registro encontrado</td>
                             </tr>
-                        @endforeach
+                        @else
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <th scope="row">{{ $post->id }}</th>
+                                    <td>
+                                        <img src="{{ asset($post->image) }}" alt="imagem" class="img-fluid"
+                                            width="100">
+                                    </td>
+                                    <td>{{ $post->title }}</td>
+                                    <td>{{ $post->description }}</td>
+                                    <td>{{ $post->category_id }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
+                                    <td>
+                                        <a href="#" class="btn-sm btn-success btn">Mostrar</a>
+                                        <a href="{{route('posts.edit', $post->id)}}" class="btn-sm btn-primary btn">Editar</a>
+                                        <a href="   #" class="btn-sm btn-danger btn">Excluir</a>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

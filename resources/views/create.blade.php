@@ -15,7 +15,7 @@
                         <h4>Novo Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end gap-4">
-                        <a href="{{ route('posts.index') }}" class="btn btn-primary float-right">Back</a>
+                        <a href="{{ route('posts.index') }}" class="btn btn-primary float-right">Voltar</a>
                     </div>
                 </div>
             </div>
