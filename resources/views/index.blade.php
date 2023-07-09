@@ -10,7 +10,7 @@
                         <h4>Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end gap-4">
-                        <a href="{{route('posts.create')}}" class="btn btn-primary float-right">Novo Post</a>
+                        <a href="{{ route('posts.create') }}" class="btn btn-primary float-right">Novo Post</a>
                         <a href="#" class="btn btn-secondary float-right mr-2">Lixeira</a>
                     </div>
                 </div>
@@ -31,21 +31,23 @@
 
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <img src="https://via.placeholder.com/150" alt="imagem" class="img-fluid" width="100">
-                            </td>
-                            <td>Lorem ipsum dolor.</td>
-                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores hic qui officiis voluptates
-                                neque voluptatem dolore laudantium.</td>
-                            <td>Noviidades</td>
-                            <td>04/05/2023</td>
-                            <td>
-                                <a href="#" class="btn-sm btn-success btn">Mostrar</a>
-                                <a href="#" class="btn-sm btn-primary btn">Editar</a>
-                                <a href="#" class="btn-sm btn-danger btn" >Excluir</a>
-                        </tr>
+                        @foreach ($posts as $post)
+                            <tr>
+                                <th scope="row">{{ $post->id }}</th>
+                                <td>
+                                    <img src="{{asset($post->image) }}" alt="imagem" class="img-fluid"
+                                        width="100">
+                                </td>
+                                <td>{{ $post->title }}</td> 
+                                <td>{{ $post->description }}</td>
+                                <td>{{ $post->category_id }}</td>
+                                <td>{{date('d-m-Y', strtotime($post->created_at))}}</td>
+                                <td>
+                                    <a href="#" class="btn-sm btn-success btn">Mostrar</a>
+                                    <a href="#" class="btn-sm btn-primary btn">Editar</a>
+                                    <a href="#" class="btn-sm btn-danger btn">Excluir</a>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
