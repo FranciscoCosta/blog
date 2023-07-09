@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="main-conent mt-5">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{ $error }}</div>
+            @endforeach
+        @endif
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -14,6 +19,9 @@
                     </div>
                 </div>
             </div>
+
+
+
 
             <div class="card-body">
                 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
@@ -33,7 +41,7 @@
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
-                            </select>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="description" class="form-control">Descrição</label>

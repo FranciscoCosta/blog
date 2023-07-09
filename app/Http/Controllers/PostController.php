@@ -31,7 +31,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return 'hello';
+        $request-> validate([
+            'image' => ['required', 'max:2028', 'image'],
+            'title' => [ 'required', 'max:255'],
+            'category_id' => ['required', 'integer'],
+            'description' => ['required']
+        ],[
+            'image.required' => 'Imagem é obrigatória',
+            'image.max' => 'Imagem deve ter no máximo 2028 bytes',
+            'image.image' => 'Imagem inválida',
+            'title.required' => 'Título é obrigatório',
+            'title.max' => 'Título deve ter no máximo 255 caracteres',
+            'category_id.required' => 'Categoria é obrigatória',
+            'category_id.integer' => 'Categoria inválida',
+            'description.required' => 'Descrição é obrigatória'
+        ]);
     }
 
     /**
